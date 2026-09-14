@@ -23,10 +23,10 @@ export function HexBadge({ value, label, className }: HexBadgeProps) {
       )}
       style={{ clipPath: hexClipPath }}
     >
-      <span className="font-heading text-3xl font-extrabold text-orange-500 sm:text-4xl">
+      <span className="font-heading text-xl font-extrabold text-orange-500 sm:text-2xl">
         {value}
       </span>
-      <span className="font-heading text-[11px] font-semibold tracking-wide text-white uppercase sm:text-xs">
+      <span className="font-heading text-2xs font-semibold tracking-wide text-white uppercase">
         {label}
       </span>
     </div>
