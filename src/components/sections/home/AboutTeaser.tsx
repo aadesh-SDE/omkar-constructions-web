@@ -12,13 +12,13 @@ export function AboutTeaser() {
       <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2 lg:px-8">
         <div>
           <Kicker>{homeAbout.kicker}</Kicker>
-          <h2 className="mt-3 font-heading text-2xl font-bold text-ink sm:text-3xl">
+          <h2 className="mt-[18px] font-heading text-2xl font-bold text-ink sm:text-3xl">
             {homeAbout.heading[0]}
             <br />
             {homeAbout.heading[1]}
           </h2>
-          <p className="mt-4 font-body text-ink-soft">{homeAbout.body}</p>
-          <Button as={Link} to="/about" variant="primary" className="mt-6">
+          <p className="mt-[26px] font-body text-xs text-ink-soft">{homeAbout.body}</p>
+          <Button as={Link} to="/about" variant="primary" size="sm" className="mt-[26px]">
             {homeAbout.cta}
             <Icon name="arrow-right" className="h-4 w-4" />
           </Button>

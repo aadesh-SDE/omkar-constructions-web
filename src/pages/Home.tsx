@@ -3,6 +3,8 @@ import { CtaBanner } from '../components/sections/CtaBanner'
 import { AboutTeaser } from '../components/sections/home/AboutTeaser'
 import { FeaturedProjects } from '../components/sections/home/FeaturedProjects'
 import { Hero } from '../components/sections/home/Hero'
+import { Marquee } from '../components/sections/home/Marquee'
+import { StatsBar } from '../components/sections/home/StatsBar'
 import { ServicesGrid } from '../components/sections/ServicesGrid'
 import { homeCta } from '../content/home'
 import heroImg from '../assets/photos/hero-excavator-sunset.jpg'
@@ -18,6 +20,8 @@ export function Home() {
         />
       </Helmet>
       <Hero />
+      <Marquee />
+      <StatsBar />
       <ServicesGrid
         kicker="Our Services"
         heading="Infrastructure for a Better Tomorrow"

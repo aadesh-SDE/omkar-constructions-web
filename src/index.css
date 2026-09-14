@@ -48,8 +48,8 @@
   --text-4xl: 4.25rem; /* 68px — large CTA H2 */
   --text-5xl: 4.75rem; /* 76px — hero H1 */
 
-  /* ---- Shape ---- */
-  --radius-card: 0.75rem;
+  /* ---- Shape (Figma card/button radius is 5px → 10px at ×2) ---- */
+  --radius-card: 0.625rem;
 
   /* ---- Motion ---- */
   --ease-out-standard: cubic-bezier(0.16, 1, 0.3, 1);
@@ -67,4 +67,23 @@ h2,
 h3,
 h4 {
   font-family: var(--font-heading);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 24s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
 }

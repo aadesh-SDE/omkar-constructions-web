@@ -33,7 +33,7 @@ export function ServicesGrid({ kicker, heading, variant, viewAllHref }: Services
           )}
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mt-10 grid gap-[22px] sm:grid-cols-2 lg:grid-cols-5">
           {services.map((service) => (
             <article
               key={service.slug}

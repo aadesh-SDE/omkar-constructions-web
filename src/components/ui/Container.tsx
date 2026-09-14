@@ -8,7 +8,7 @@ export function Container({
 }: ComponentPropsWithoutRef<'div'>) {
   return (
     <div
-      className={clsx('mx-auto w-full max-w-[1524px] px-6 lg:px-[53px]', className)}
+      className={clsx('mx-auto w-full max-w-[1524px] px-6 lg:px-[107px]', className)}
       {...props}
     />
   )

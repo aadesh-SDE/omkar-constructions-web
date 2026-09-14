@@ -2,6 +2,7 @@ import { clsx } from 'clsx'
 import type { ComponentPropsWithoutRef, ElementType } from 'react'
 
 type ButtonVariant = 'primary' | 'outline' | 'outline-light' | 'ghost'
+type ButtonSize = 'lg' | 'sm'
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
@@ -13,9 +14,17 @@ const variantClasses: Record<ButtonVariant, string> = {
   ghost: 'text-navy-900 hover:text-orange-600 focus-visible:outline-navy-900',
 }
 
+// Exact Figma measurements (×2): the hero/CTA buttons pad 34px on every
+// side; the header's compact "Get a Quote" pads 25px vertical / 36px horizontal.
+const sizeClasses: Record<ButtonSize, string> = {
+  lg: 'px-[34px] py-[34px]',
+  sm: 'px-[36px] py-[25px]',
+}
+
 type ButtonOwnProps<T extends ElementType> = {
   as?: T
   variant?: ButtonVariant
+  size?: ButtonSize
   className?: string
 }
 
@@ -27,6 +36,7 @@ type ButtonProps<T extends ElementType> = ButtonOwnProps<T> &
 export function Button<T extends ElementType = 'button'>({
   as,
   variant = 'primary',
+  size = 'lg',
   className,
   ...props
 }: ButtonProps<T>) {
@@ -34,10 +44,13 @@ export function Button<T extends ElementType = 'button'>({
   return (
     <Component
       className={clsx(
-        'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3',
-        'font-heading text-md font-semibold tracking-wide uppercase',
+        // Corner radius and gap are exact Figma values (×2): 5px radius →
+        // 10px, and 9px icon/text gap → 18px. Buttons are NOT pills.
+        'inline-flex items-center justify-center gap-[18px] rounded-[10px]',
+        'font-heading text-md leading-none font-semibold tracking-wide uppercase',
         'transition-colors duration-200 ease-out',
         'focus-visible:outline-2 focus-visible:outline-offset-2',
+        sizeClasses[size],
         variantClasses[variant],
         className,
       )}

@@ -12,14 +12,14 @@ const socials = [
 export function Footer() {
   return (
     <footer className="bg-navy-900 text-white">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div className="mx-auto max-w-[1524px] px-6 pt-[76px] pb-16 lg:px-[107px]">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Logo light />
-            <p className="mt-4 font-body text-sm text-white/60">
+            <p className="mt-[34px] font-body text-sm text-white/60">
               Construction for a Stronger Tomorrow.
             </p>
-            <div className="mt-5 flex gap-3">
+            <div className="mt-[34px] flex gap-3">
               {socials.map((s) => (
                 <a
                   key={s.label}
@@ -83,7 +83,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-5 font-body text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between lg:px-8">
+        <div className="mx-auto flex min-h-[106px] max-w-[1524px] flex-col justify-center gap-2 px-6 py-5 font-body text-2xs text-white/50 sm:flex-row sm:items-center sm:justify-between lg:px-[107px]">
           <p>&copy; 2026 Omkar Constructions. All Rights Reserved.</p>
           <p>Built on Experience. Driven by Execution.</p>
         </div>

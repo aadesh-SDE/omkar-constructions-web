@@ -23,19 +23,19 @@ export function FeaturedProjects() {
           </Link>
         </div>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
+        <div className="mt-10 grid gap-[26px] sm:grid-cols-3">
           {homeFeaturedProjects.map((project) => (
             <article key={project.name} className="overflow-hidden rounded-card bg-paper">
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={project.image} alt="" className="h-full w-full object-cover" />
               </div>
-              <div className="p-5">
-                <h3 className="font-heading text-base font-bold text-ink">{project.name}</h3>
-                <p className="mt-1 flex items-center gap-1 font-body text-sm text-ink-faint">
-                  <Icon name="pin" className="h-3.5 w-3.5" />
-                  {project.location}
-                </p>
-              </div>
+              <h3 className="mt-[20px] font-heading text-base font-bold text-ink">
+                {project.name}
+              </h3>
+              <p className="mt-[20px] flex items-center gap-1 font-body text-sm text-ink-faint">
+                <Icon name="pin" className="h-3.5 w-3.5" />
+                {project.location}
+              </p>
             </article>
           ))}
         </div>

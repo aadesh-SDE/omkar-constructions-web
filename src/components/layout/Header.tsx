@@ -10,10 +10,12 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-paper/95 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3 lg:px-8">
+      {/* Height and nav gap are exact Figma values ×2: 55px → 110px header,
+          33px → 66px gap between nav links. */}
+      <div className="mx-auto flex h-[110px] max-w-[1524px] items-center justify-between px-6 lg:px-[107px]">
         <Logo />
 
-        <nav className="hidden items-center gap-8 lg:flex">
+        <nav className="hidden items-center gap-[66px] lg:flex">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
@@ -29,7 +31,7 @@ export function Header() {
           ))}
         </nav>
 
-        <Button as={Link} to="/contact" variant="primary" className="hidden lg:inline-flex">
+        <Button as={Link} to="/contact" variant="primary" size="sm" className="hidden lg:inline-flex">
           Get a Quote
           <Icon name="arrow-right" className="h-4 w-4" />
         </Button>
@@ -66,7 +68,7 @@ export function Header() {
               </li>
             ))}
           </ul>
-          <Button as={Link} to="/contact" variant="primary" className="mt-5 w-full">
+          <Button as={Link} to="/contact" variant="primary" size="sm" className="mt-5 w-full">
             Get a Quote
             <Icon name="arrow-right" className="h-4 w-4" />
           </Button>
