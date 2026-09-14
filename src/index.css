@@ -1,5 +1,54 @@
 @import 'tailwindcss';
 
+/* Self-hosted fonts — see src/main.tsx for the actual @fontsource imports */
+
+@theme {
+  /* ---- Brand color system, sampled from the Omkar Constructions pamphlet
+     and Figma reference (navy + orange, photography-driven). ---- */
+
+  /* Navy — headers, footers, dark sections, primary text on light bg */
+  --color-navy-950: #0a1420;
+  --color-navy-900: #0e1c2e;
+  --color-navy-800: #14293f;
+  --color-navy-700: #1d3552;
+  --color-navy-600: #2b4a70;
+
+  /* Orange — the brand accent: CTAs, highlighted words, icons, badges */
+  --color-orange-600: #d9540a;
+  --color-orange-500: #f5760f;
+  --color-orange-400: #ff9142;
+  --color-orange-100: #ffe7d3;
+  --color-orange-50: #fff4ea;
+
+  /* Neutrals */
+  --color-paper: #ffffff;
+  --color-mist: #f6f7f9;
+  --color-line: #e3e6ea;
+  --color-ink: #0a1420;
+  --color-ink-soft: #4b5563;
+  --color-ink-faint: #94a0af;
+
+  /* ---- Typography ---- */
+  --font-heading: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+  /* ---- Shape ---- */
+  --radius-card: 0.75rem;
+
+  /* ---- Motion ---- */
+  --ease-out-standard: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 body {
   margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-paper);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
 }

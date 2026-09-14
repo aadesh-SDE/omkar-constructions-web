@@ -1,16 +1,13 @@
 import { Helmet } from 'react-helmet-async'
+import { StyleGuide } from './StyleGuide'
 
 function App() {
   return (
     <>
       <Helmet>
-        <title>Omkar Constructions</title>
+        <title>Omkar Constructions — Design System</title>
       </Helmet>
-      <main className="flex min-h-screen items-center justify-center">
-        <p className="text-slate-500">
-          Omkar Constructions — site structure coming next.
-        </p>
-      </main>
+      <StyleGuide />
     </>
   )
 }
