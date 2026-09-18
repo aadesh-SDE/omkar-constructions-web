@@ -1,24 +1,29 @@
-import approachImg from '../assets/photos/about-approach.jpg'
-import heroImg from '../assets/photos/hero-excavator-sunset.jpg'
-import storyImg from '../assets/photos/about-story.jpg'
+import approachPanelImg from '../assets/photos/about-approach-panel.png'
+import heroImg from '../assets/photos/about-hero.png'
+import storyImg from '../assets/photos/about-story.png'
+import ctaImg from '../assets/photos/about-cta.png'
 import type { IconName } from '../components/ui/Icon'
 
 export const aboutHero = {
   breadcrumb: 'About Us',
   kicker: 'About Omkar Constructions',
   heading: ['Built on Experience.', 'Driven by Purpose.'],
+  /** Word(s) to highlight orange on each heading line, in order. */
+  headingHighlight: ['Experience.', 'Purpose.'],
   body: 'A new company with 17-18 years of industry experience, committed to building a stronger tomorrow.',
   image: heroImg,
 }
 
 export const ourStory = {
   kicker: 'Our Story',
-  heading: ['The Experience Behind', 'Omkar'],
-  body: 'Omkar Constructions is a newly established company backed by 17–18 years of industry experience in construction and infrastructure projects. Our expertise includes Mining, Blasting Works, Road Projects, Mass Excavation, Building Construction and Building Demolition. We bring practical site experience, skilled execution, and a strong focus on safety, quality, and timely delivery.',
+  heading: ['The Experience', 'Behind Omkar'],
+  // Two paragraphs, matching the Figma reference's visible paragraph break.
+  body: [
+    'Omkar Constructions is a newly established company backed by 17–18 years of industry experience in construction and infrastructure projects. Our expertise includes Mining, Blasting Works, Road Projects, Mass Excavation, Building Construction and Building Demolition.',
+    'We bring practical site experience, skilled execution, and a strong focus on safety, quality, and timely delivery.',
+  ],
   cta: 'Our Journey',
   image: storyImg,
-  badgeValue: '17-18',
-  badgeLabel: 'Years of Industry Experience',
 }
 
 export const strengths: { title: string; body: string; icon: IconName }[] = [
@@ -31,7 +36,7 @@ export const strengths: { title: string; body: string; icon: IconName }[] = [
 export const approach = {
   panelLabel: 'People Projects Progress',
   panelHeading: 'Turning experience into infrastructure for a better tomorrow.',
-  panelImage: approachImg,
+  panelImage: approachPanelImg,
   kicker: 'Our Approach',
   heading: ['From Experience', 'to Execution'],
   body: 'Our teams bring practical industry experience and a hands-on approach to every project. We focus on detailed planning, efficient execution and close coordination at every stage, ensuring safe operations, quality workmanship, and timely delivery. Our goal is to create lasting value through responsible and dependable construction.',
@@ -55,4 +60,5 @@ export const aboutCta = {
   heading: ['Ready for the', 'Next Project?'],
   body: "Let's discuss your requirements and explore how Omkar Constructions can support your project.",
   cta: 'Get in Touch',
+  image: ctaImg,
 }

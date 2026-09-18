@@ -27,10 +27,16 @@ export type IconName =
   | 'check-circle'
   | 'search'
   | 'quote'
+  | 'eye'
+  | 'target'
 
 const paths: Record<IconName, ReactElement> = {
+  // A hard-hat, used by the About page's "Proven Experience" strength.
+  // Confirmed dead elsewhere: the Home Stats bar and About-teaser both use
+  // their own supplied PNG icons instead of this SVG path now, so redrawing
+  // it in place doesn't affect them.
   experience: (
-    <path d="M12 2 3 7v2h18V7l-9-5zM5 11v9h3v-9H5zm5.5 0v9h3v-9h-3zM16 11v9h3v-9h-3zM3 22h18v-2H3v2z" />
+    <path d="M4 15h16a1 1 0 1 1 0 2H4a1 1 0 1 1 0-2zM12 3a7 7 0 0 0-7 7v3h14v-3a7 7 0 0 0-7-7z" />
   ),
   'core-areas': <path d="M12 2 2 22h20L12 2zm0 4.2 6 12.3H6l6-12.3z" />,
   safety: (
@@ -40,7 +46,11 @@ const paths: Record<IconName, ReactElement> = {
   team: (
     <path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
   ),
-  execution: <path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z" />,
+  // A gear/cog, used by the About page's "Practical Execution" strength.
+  // Also confirmed dead elsewhere (see 'experience' above).
+  execution: (
+    <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.5.5 0 0 0 .12-.61l-1.92-3.32a.5.5 0 0 0-.59-.22l-2.39.96a7.3 7.3 0 0 0-1.62-.94l-.36-2.54A.5.5 0 0 0 13.92 2h-3.84a.5.5 0 0 0-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.5.5 0 0 0-.59.22L2.74 8.47a.5.5 0 0 0 .12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.5.5 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.03.24.23.41.47.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.5.5 0 0 0-.12-.61l-2.03-1.58zM12 15.6a3.6 3.6 0 1 1 0-7.2 3.6 3.6 0 0 1 0 7.2z" />
+  ),
   results: <path d="M12 2 1 21h22L12 2zm0 3.8 7.5 13.2h-15L12 5.8z" />,
   phone: (
     <path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.7 3.6.7.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.7 3.6.1.3 0 .7-.2 1l-2.4 2.2z" />
@@ -88,6 +98,30 @@ const paths: Record<IconName, ReactElement> = {
   ),
   quote: (
     <path d="M9.5 7C6.5 8.6 5 10.7 5 13.4c0 2.2 1.4 3.6 3.1 3.6a2.7 2.7 0 0 0 2.8-2.7c0-1.4-1-2.4-2.3-2.6.3-1.6 1.6-3 3.4-3.7L9.5 7zm8 0c-3 1.6-4.5 3.7-4.5 6.4 0 2.2 1.4 3.6 3.1 3.6a2.7 2.7 0 0 0 2.8-2.7c0-1.4-1-2.4-2.3-2.6.3-1.6 1.6-3 3.4-3.7L17.5 7z" />
+  ),
+  // Used by the About page's "Our Vision" direction card. Stroked (not
+  // filled) so it reads as a line icon — overrides the shared svg's
+  // fill="currentColor" per-shape.
+  eye: (
+    <>
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+      />
+      <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+    </>
+  ),
+  // Used by the About page's "Our Mission" direction card. Same stroked
+  // treatment as 'eye' above — three concentric rings, no fill.
+  target: (
+    <>
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="12" cy="12" r="5.5" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+      <circle cx="12" cy="12" r="2" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" />
+    </>
   ),
 }
 

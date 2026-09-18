@@ -1,10 +1,10 @@
-import buildingConstructionImg from '../assets/photos/service-construction.jpg'
-import demolitionImg from '../assets/photos/service-demolition.jpg'
+import buildingConstructionImg from '../assets/photos/service-construction.png'
+import demolitionImg from '../assets/photos/service-demolition.png'
 import featuredProjectImg from '../assets/photos/featured-project.jpg'
-import irrigationImg from '../assets/photos/project-irrigation.jpg'
-import landLevelingImg from '../assets/photos/project-land-leveling.jpg'
-import miningImg from '../assets/photos/project-mining.jpg'
-import roadImg from '../assets/photos/service-road.jpg'
+import irrigationImg from '../assets/photos/project-irrigation.png'
+import landLevelingImg from '../assets/photos/project-land-leveling.png'
+import miningImg from '../assets/photos/project-mining.png'
+import roadImg from '../assets/photos/service-road.png'
 import testimonialBgImg from '../assets/photos/testimonial-bg.jpg'
 
 export type Project = {

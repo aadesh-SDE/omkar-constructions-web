@@ -7,7 +7,7 @@ import { Marquee } from '../components/sections/home/Marquee'
 import { StatsBar } from '../components/sections/home/StatsBar'
 import { ServicesGrid } from '../components/sections/ServicesGrid'
 import { homeCta } from '../content/home'
-import heroImg from '../assets/photos/hero-excavator-sunset.jpg'
+import heroImg from '../assets/photos/cta-mining-sunset.jpg'
 
 export function Home() {
   return (
@@ -25,6 +25,7 @@ export function Home() {
       <ServicesGrid
         kicker="Our Services"
         heading="Infrastructure for a Better Tomorrow"
+        highlight="Better Tomorrow"
         variant="home"
         viewAllHref="/services"
       />
@@ -33,6 +34,7 @@ export function Home() {
       <CtaBanner
         kicker={homeCta.kicker}
         heading={homeCta.heading}
+        highlight="Project"
         body={homeCta.body}
         cta={homeCta.cta}
         image={heroImg}

@@ -1,4 +1,4 @@
-import heroImg from '../assets/photos/hero-excavator-sunset.jpg'
+import heroImg from '../assets/photos/hero-excavator-golden.jpg'
 import type { IconName } from '../components/ui/Icon'
 
 export const homeHero = {

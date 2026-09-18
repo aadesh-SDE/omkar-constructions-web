@@ -7,14 +7,13 @@ const REPEATS = 6
 
 function Group() {
   return (
-    <div className="flex shrink-0 items-center gap-8" aria-hidden="true">
+    <div className="flex shrink-0 items-center gap-[25px]" aria-hidden="true">
       {Array.from({ length: REPEATS }).map((_, i) => (
         <span
           key={i}
-          className="font-heading text-lg font-bold tracking-wide whitespace-nowrap text-white uppercase"
+          className="font-heading p-[10px] text-[16px] font-bold tracking-wide whitespace-nowrap text-[#FF4F0A] uppercase"
         >
           Welcome to the Omkar Constructions
-          <span className="mx-8 text-white/50">•</span>
         </span>
       ))}
     </div>
@@ -23,7 +22,7 @@ function Group() {
 
 export function Marquee() {
   return (
-    <div className="overflow-hidden bg-orange-500 py-[20px]">
+    <div className="my-[12px] overflow-hidden bg-white">
       {/* Two identical groups back-to-back so a -50% translate loops seamlessly. */}
       <div className="animate-marquee flex w-max">
         <Group />

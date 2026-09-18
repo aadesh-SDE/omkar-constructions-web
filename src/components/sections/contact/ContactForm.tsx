@@ -1,12 +1,15 @@
 import { useState } from 'react'
+import { footerContact } from '../../../content/nav'
 import { Button } from '../../ui/Button'
 
-// TODO: replace with the real Web3Forms access key (create one free at
-// https://web3forms.com — no backend needed, it emails submissions straight
-// to Omkar's inbox).
-const WEB3FORMS_ACCESS_KEY = 'REPLACE_WITH_WEB3FORMS_ACCESS_KEY'
+const CONTACT_INBOX = footerContact.email
+const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${CONTACT_INBOX}`
 
 type Status = 'idle' | 'submitting' | 'success' | 'error'
+
+function isSubmitSuccess(result: { success?: boolean | string }) {
+  return result.success === true || result.success === 'true'
+}
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle')
@@ -16,16 +19,38 @@ export function ContactForm() {
     setStatus('submitting')
     const form = e.currentTarget
     const data = new FormData(form)
-    data.append('access_key', WEB3FORMS_ACCESS_KEY)
+
+    if (String(data.get('_honey') ?? '').trim()) {
+      setStatus('success')
+      form.reset()
+      return
+    }
+
+    const name = String(data.get('name') ?? '').trim()
+    const email = String(data.get('email') ?? '').trim()
+    const phone = String(data.get('phone') ?? '').trim()
+    const message = String(data.get('message') ?? '').trim()
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch(FORMSUBMIT_URL, {
         method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: data,
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          phone,
+          email,
+          message,
+          _replyto: email,
+          _subject: `New project inquiry from ${name}`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
       })
-      const result = await res.json()
-      if (result.success) {
+      const result = (await res.json()) as { success?: boolean | string }
+      if (isSubmitSuccess(result)) {
         setStatus('success')
         form.reset()
       } else {
@@ -38,6 +63,14 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      <input
+        type="text"
+        name="_honey"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+        aria-hidden="true"
+      />
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Full Name" name="name" required />
         <Field label="Phone Number" name="phone" type="tel" required />
@@ -45,14 +78,17 @@ export function ContactForm() {
       <Field label="Email Address" name="email" type="email" required />
       <Field label="What do you need?" name="message" as="textarea" rows={5} required />
 
-      <Button
-        type="submit"
-        variant="primary"
-        className="w-full sm:w-auto"
-        disabled={status === 'submitting'}
-      >
-        {status === 'submitting' ? 'Sending…' : 'Send Message'}
-      </Button>
+      <div className="flex justify-center">
+        <Button
+          type="submit"
+          variant="primary"
+          size="sm"
+          className="h-[46px]! w-1/2 px-0! py-0! text-[13px]! sm:h-[48px]! sm:text-[14px]! md:h-[50px]! md:text-[15px]!"
+          disabled={status === 'submitting'}
+        >
+          {status === 'submitting' ? 'Sending…' : 'Send Message'}
+        </Button>
+      </div>
 
       {status === 'success' && (
         <p className="font-body text-sm text-orange-600">

@@ -46,8 +46,11 @@ export function Button<T extends ElementType = 'button'>({
       className={clsx(
         // Corner radius and gap are exact Figma values (×2): 5px radius →
         // 10px, and 9px icon/text gap → 18px. Buttons are NOT pills.
+        // Label style is Roboto Bold (weight 700), title case — NOT
+        // uppercase: the Figma text layers are literally "Get a Quote" /
+        // "Explore Our Services" etc, no uppercase transform.
         'inline-flex items-center justify-center gap-[18px] rounded-[10px]',
-        'font-heading text-md leading-none font-semibold tracking-wide uppercase',
+        'font-body text-md leading-none font-bold',
         'transition-colors duration-200 ease-out',
         'focus-visible:outline-2 focus-visible:outline-offset-2',
         sizeClasses[size],

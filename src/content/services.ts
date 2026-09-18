@@ -1,8 +1,8 @@
-import constructionImg from '../assets/photos/service-construction.jpg'
-import demolitionImg from '../assets/photos/service-demolition.jpg'
-import excavationImg from '../assets/photos/service-excavation.jpg'
-import miningImg from '../assets/photos/service-mining.jpg'
-import roadImg from '../assets/photos/service-road.jpg'
+import constructionImg from '../assets/photos/service-construction.png'
+import demolitionImg from '../assets/photos/service-demolition.png'
+import excavationImg from '../assets/photos/service-excavation.png'
+import miningImg from '../assets/photos/service-mining.png'
+import roadImg from '../assets/photos/service-road.png'
 import type { IconName } from '../components/ui/Icon'
 
 export type Service = {

@@ -12,7 +12,7 @@ export const servicesHero = {
 
 export const servicesIntro = {
   kicker: 'Our Expertise',
-  heading: ['Comprehensive Construction', 'Solutions'],
+  heading: ['Comprehensive', 'Construction Solutions'],
   body: 'At Omkar Constructions, we offer a focused range of construction and infrastructure services, backed by 17–18 years of industry experience. Each service is executed with a strong emphasis on safety, quality, planning and timely delivery.',
   quote: 'Every project is an opportunity to build a stronger tomorrow.',
   quoteAttribution: 'Omkar Constructions',

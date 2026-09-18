@@ -21,6 +21,7 @@ export function About() {
         breadcrumb={aboutHero.breadcrumb}
         kicker={aboutHero.kicker}
         heading={aboutHero.heading as [string, string]}
+        highlight={aboutHero.headingHighlight as [string, string]}
         body={aboutHero.body}
         image={aboutHero.image}
       />
@@ -33,7 +34,7 @@ export function About() {
         heading={aboutCta.heading as [string, string]}
         body={aboutCta.body}
         cta={aboutCta.cta}
-        image={aboutHero.image}
+        image={aboutCta.image}
       />
     </>
   )
