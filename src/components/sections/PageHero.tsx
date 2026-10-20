@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Highlight } from '../ui/Highlight'
+import { Icon, type IconName } from '../ui/Icon'
 import { Kicker } from '../ui/Kicker'
 
 type PageHeroProps = {
@@ -14,6 +15,8 @@ type PageHeroProps = {
   highlight?: [string, string]
   body: string
   image: string
+  /** Optional row of icon + label chips under the body (e.g. Careers). */
+  chips?: { icon: IconName; label: string }[]
 }
 
 /** Shared inner-page hero used by About, Services and Projects: breadcrumb,
@@ -21,7 +24,7 @@ type PageHeroProps = {
  *  and the "PEOPLE PROJECTS PROGRESS" vertical side label from the Figma.
  *  Height is 70% of the Home Hero's own height (same tiered dvh-minus-header
  *  formula, at 70dvh instead of 100dvh). */
-export function PageHero({ breadcrumb, kicker, heading, highlight, body, image }: PageHeroProps) {
+export function PageHero({ breadcrumb, kicker, heading, highlight, body, image, chips }: PageHeroProps) {
   return (
     <section
       className="relative flex h-[calc(70dvh-27px)] items-center overflow-hidden bg-navy-950 bg-cover bg-[position:center_65%] text-white sm:h-[calc(70dvh-29px)] md:h-[calc(70dvh-31px)] lg:h-[calc(70dvh-33px)] xl:h-[calc(70dvh-35px)] 2xl:h-[calc(70dvh-37px)]"
@@ -61,6 +64,16 @@ export function PageHero({ breadcrumb, kicker, heading, highlight, body, image }
         <p className="mt-[9px] max-w-xl font-body text-[16px] text-white sm:mt-[10px] sm:text-[16px] md:mt-[11px] md:text-[17px] lg:mt-[12px] lg:text-[17px] xl:mt-[13px] xl:text-[18px] 2xl:mt-[14px] 2xl:text-[19px]">
           {body}
         </p>
+        {chips && (
+          <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
+            {chips.map((chip) => (
+              <li key={chip.label} className="flex items-center gap-2 font-body text-2xs text-white">
+                <Icon name={chip.icon} className="h-5 w-5 text-orange-500" />
+                {chip.label}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       <div className="absolute top-1/2 right-6 hidden -translate-y-1/2 lg:right-10 lg:block">

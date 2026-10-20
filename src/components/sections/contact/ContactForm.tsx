@@ -1,56 +1,61 @@
 import { useState } from 'react'
-import { footerContact } from '../../../content/nav'
+import {
+  CONTACT_FORM_URL,
+  focusFirstError,
+  isHoneypotFilled,
+  submitToAppsScript,
+  validateRequired,
+  withoutError,
+  type FieldErrors,
+  type SubmitStatus,
+} from '../../../lib/forms'
 import { Button } from '../../ui/Button'
+import { FormField } from '../../ui/FormField'
 
-const CONTACT_INBOX = footerContact.email
-const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${CONTACT_INBOX}`
-
-type Status = 'idle' | 'submitting' | 'success' | 'error'
-
-function isSubmitSuccess(result: { success?: boolean | string }) {
-  return result.success === true || result.success === 'true'
+const REQUIRED_FIELDS = {
+  name: 'Please enter your full name.',
+  phone: 'Please enter your phone number.',
+  email: 'Please enter your email address.',
+  message: 'Please tell us what you need.',
 }
 
 export function ContactForm() {
-  const [status, setStatus] = useState<Status>('idle')
+  const [status, setStatus] = useState<SubmitStatus>('idle')
+  const [errors, setErrors] = useState<FieldErrors>({})
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    setStatus('submitting')
     const form = e.currentTarget
     const data = new FormData(form)
 
-    if (String(data.get('_honey') ?? '').trim()) {
+    if (isHoneypotFilled(data)) {
       setStatus('success')
       form.reset()
       return
     }
 
+    const fieldErrors = validateRequired(data, REQUIRED_FIELDS)
+    setErrors(fieldErrors)
+    if (Object.keys(fieldErrors).length) {
+      setStatus('idle')
+      focusFirstError(form, fieldErrors)
+      return
+    }
+
+    setStatus('submitting')
     const name = String(data.get('name') ?? '').trim()
     const email = String(data.get('email') ?? '').trim()
     const phone = String(data.get('phone') ?? '').trim()
     const message = String(data.get('message') ?? '').trim()
 
     try {
-      const res = await fetch(FORMSUBMIT_URL, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name,
-          phone,
-          email,
-          message,
-          _replyto: email,
-          _subject: `New project inquiry from ${name}`,
-          _template: 'table',
-          _captcha: 'false',
-        }),
+      const ok = await submitToAppsScript(CONTACT_FORM_URL, {
+        name,
+        phone,
+        email,
+        message,
       })
-      const result = (await res.json()) as { success?: boolean | string }
-      if (isSubmitSuccess(result)) {
+      if (ok) {
         setStatus('success')
         form.reset()
       } else {
@@ -62,7 +67,15 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form
+      onSubmit={handleSubmit}
+      onInput={(e) => {
+        const { name } = e.target as HTMLInputElement
+        if (errors[name]) setErrors((prev) => withoutError(prev, name))
+      }}
+      noValidate
+      className="space-y-4"
+    >
       <input
         type="text"
         name="_honey"
@@ -72,11 +85,18 @@ export function ContactForm() {
         aria-hidden="true"
       />
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Full Name" name="name" required />
-        <Field label="Phone Number" name="phone" type="tel" required />
+        <FormField label="Full Name" name="name" required error={errors.name} />
+        <FormField label="Phone Number" name="phone" type="tel" required error={errors.phone} />
       </div>
-      <Field label="Email Address" name="email" type="email" required />
-      <Field label="What do you need?" name="message" as="textarea" rows={5} required />
+      <FormField label="Email Address" name="email" type="email" required error={errors.email} />
+      <FormField
+        label="What do you need?"
+        name="message"
+        as="textarea"
+        rows={5}
+        required
+        error={errors.message}
+      />
 
       <div className="flex justify-center">
         <Button
@@ -102,34 +122,5 @@ export function ContactForm() {
         </p>
       )}
     </form>
-  )
-}
-
-function Field({
-  label,
-  name,
-  type = 'text',
-  as = 'input',
-  rows,
-  required,
-}: {
-  label: string
-  name: string
-  type?: string
-  as?: 'input' | 'textarea'
-  rows?: number
-  required?: boolean
-}) {
-  const sharedClasses =
-    'w-full rounded-lg border border-line bg-paper px-4 py-2.5 font-body text-sm text-ink outline-none transition-colors focus:border-orange-500'
-  return (
-    <label className="block">
-      <span className="mb-1.5 block font-body text-sm font-medium text-ink-soft">{label}</span>
-      {as === 'textarea' ? (
-        <textarea name={name} rows={rows} required={required} className={sharedClasses} />
-      ) : (
-        <input type={type} name={name} required={required} className={sharedClasses} />
-      )}
-    </label>
   )
 }
