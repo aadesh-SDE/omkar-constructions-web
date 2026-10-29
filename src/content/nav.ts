@@ -8,9 +8,10 @@ export const navLinks = [
 ]
 
 export const footerContact = {
-  phones: ['+91 9458402686', '+91 7840081444'],
+  phones: ['+91 86500 02223', '+91 99904 91662'],
   email: 'omkarconstruction155@gmail.com',
   address: 'B 36 Sainik Vihar, Meerut Cantt',
+  gstin: '09BEXPS5739G1ZJ',
 }
 
 export const footerServiceLinks = [

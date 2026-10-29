@@ -79,8 +79,11 @@ export function Footer() {
                 {footerContact.email}
               </li>
               <li className="flex items-center gap-2 font-body text-sm text-white/60">
-                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-white" />
+                <Icon name="pin" className="h-4 w-4 shrink-0 text-white" />
                 {footerContact.address}
+              </li>
+              <li className="font-body text-sm text-white/60">
+                GSTIN: {footerContact.gstin}
               </li>
             </ul>
           </div>
@@ -89,7 +92,13 @@ export function Footer() {
 
       <div className="border-t border-white/10">
         <div className="mx-auto flex min-h-[106px] max-w-[1524px] flex-col justify-center gap-2 px-[21px] py-5 font-body text-2xs text-white/50 sm:flex-row sm:items-center sm:justify-between sm:px-[29px] md:px-[37px] lg:px-[45px] xl:px-[53px] 2xl:px-[61px]">
-          <p>&copy; 2026 Omkar Constructions. All Rights Reserved.</p>
+          <p>
+            &copy; 2026 Omkar Constructions. All Rights Reserved.
+            <span className="mx-2 text-white/20" aria-hidden="true">
+              |
+            </span>
+            GSTIN: {footerContact.gstin}
+          </p>
           <p className="flex items-center gap-[10px]">
             <span className="h-[2px] w-6 shrink-0 bg-orange-500" />
             Built on Experience. Driven by Execution.
